@@ -47,7 +47,7 @@
           <td class="border-0">
             <a class="" href="./records/{{ this._id }}/edit">修改</a>
             
-            <form action="/records/{{ this._id }}/delete" method="POST" style="display: inline;">
+            <form action="/records/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
             <button type="submit">刪除</button>
             </form>
           </td>
