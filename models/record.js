@@ -3,7 +3,7 @@ const Schema = mongoose.Schema
 const recordSchema = new Schema({
   id: {
     type: Number,
-    required: true
+  
   },
   name: {
     type: String,
@@ -19,7 +19,7 @@ const recordSchema = new Schema({
   },
   category: {
     type: String,
-    required: true
+    
   }
 })
 
