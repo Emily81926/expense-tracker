@@ -5,7 +5,7 @@ const port = 3000
 const mongoose = require('mongoose')
 const db = mongoose.connection
 const exphbs = require('express-handlebars')
-const Expense = require('./models/expense')
+const Record = require('./models/record')
 
 mongoose.connect('mongodb://localhost/Expense', { useNewUrlParser: true, useUnifiedTopology: true })
 
@@ -21,9 +21,9 @@ app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 
 app.get('/', (req, res) => {
-  Expense.find()
+  Record.find()
       .lean()
-      .then(expenses => res.render('index', { expenses }))
+      .then(records => res.render('index', { records }))
       .catch(error => console.log(error))
   
   

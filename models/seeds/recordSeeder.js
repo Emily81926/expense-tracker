@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const Expense = require('../expense')
+const Record = require('../record')
 const db = mongoose.connection
 
 mongoose.connect('mongodb://localhost/Expense', { useNewUrlParser: true, useUnifiedTopology: true })
@@ -10,7 +10,7 @@ db.on('error', () => {
 
 db.once('open', () => {
   console.log('mongodb connected!')
-  Expense.create({
+  Record.create({
     id: 1,
     name: '午餐',
     date: '2019 / 04 / 23',
