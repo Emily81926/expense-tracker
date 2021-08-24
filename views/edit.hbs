@@ -5,7 +5,7 @@
       <h2>請輸入你的支出</h2>
     </div>
 
-    <form action="/records/{{ record._id}}/edit" class="container needs-validation mt-4" method="POST">
+    <form action="/records/{{ record._id}}?_method=PUT" class="container needs-validation mt-4" method="POST">
       <div class="input-group mb-3 row justify-content-center ">
         <div class="input-group-prepend form-group">
           <span class="input-group-text" id="basic-addon1">名稱＊</span>
