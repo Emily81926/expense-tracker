@@ -20,7 +20,21 @@ app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 
 app.get('/', (req, res) => {
-  res.render('index')
+  //等等要用到mongodb去
+  const list =[{
+    id: 1,
+    name: '午餐' ,
+    date: '2019 / 04 / 23',
+    amount: 60 ,
+    category:'餐飲食品',
+  },{
+    id: 2,
+    name: '早餐',
+    date: '2018 / 03 / 13',
+    amount: 10,
+    category: '餐飲食品',
+  }]
+  res.render('index',{ expense: list })
 })
 
 app.listen(port, () => {

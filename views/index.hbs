@@ -1,36 +1,60 @@
-<div class="container "></div>
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
-    aria-haspopup="true" aria-expanded="false">
-    類別
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">餐飲食品</a>
-    <a class="dropdown-item" href="#">交通出行</a>
-    <a class="dropdown-item" href="#">休閒娛樂</a>
-    <a class="dropdown-item" href="#">家居物業</a>
+<div class="container mt-4">
+  <div class="row justify-content-center">
+    <div class="col-2"></div>
+    <div class="col-8">
+      <div class="form-group row">
+        <select class="form-control col-8" id="exampleFormControlSelect1" placeholder="Readonly input here...">
+          <option value="">請選擇類別</option>
+          <option>餐飲食品</option>
+          <option>交通出行</option>
+          <option>休閒娛樂</option>
+          <option>家居物業</option>
+
+        </select>
+      </div>
+    </div>
+    <div class="col-2"></div>
+    <div class="col-3"></div>
+    <div class="col-5">
+      <div class="row mt-3 justify-content-center">
+        <div class="col-4 text-left">
+          <h3> 總金額</h3>
+        </div>
+        <div class="col-8 text-right align-text-bottom">
+          <h1> 25260
+        </div>
+      </div>
+    </div>
+    <div class="col-4"></div>
   </div>
- </div>
 
- <div class="total-amount d-flex">
-   <div> 總金額</div>
-   <div> 25260 </div>
- </div>
 
- <div class="expense-list d-flex">
-   <div class="category-img">
-    <img src="https://fontawesome.com/icons/utensils?style=solid" alt="eating">
-   </div>
-   <div class="expense-name">
-     <h4 class="name">午餐</h4>
-     <p class="date">2019/04/23</p>
-   </div>
-   <div class="amount">
-     <h5>60</h5>
-   </div>
-   <a href="">修改</a>
-   <a href="">刪除</a>
- </div>
+  <div class="row mt-2">
+    <table class="table table-striped table-hover col-10">
+      {{#each expense}}
+      <tbody class="text-break">
+        <tr class="row align-items-center justify-content-between px-2">
+          <td class="border-0 text-center">
+            <img src="https://fontawesome.com/icons/utensils?style=solid" alt="eating">
+          </td>
+          <td class="text-center border-0">
+            <h4 class="mb-1">{{this.name}}</h4>
+            <small class="date">{{this.date}}</small>
+          </td>
+          <td class="border-0">
+            <span class="amount">{{this.amount}}</span>元
+          </td>
+          <td class="border-0">
+            <a class="" href="">修改</a>
+            <a href="">刪除</a>
+          </td>
 
-<button type="button" class="btn btn-info">新增支出</button>
+        </tr>
+
+      </tbody>
+     {{/each}}
+    </table>
+    <div class="col-2"></div>
+  </div>
+
 </div>
