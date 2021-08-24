@@ -10,7 +10,7 @@ const routes = require('./routes')
 require('./config/mongoose')
 
 
-app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
+app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs', helpers: require('./config/helpers') }))
 app.set('view engine', 'hbs')
 app.use(bodyParser.urlencoded({ extended: true}))
 app.use(methodOverride('_method'))

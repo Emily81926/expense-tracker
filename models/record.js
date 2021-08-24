@@ -3,14 +3,13 @@ const Schema = mongoose.Schema
 const recordSchema = new Schema({
   id: {
     type: Number,
-  
   },
   name: {
     type: String,
     required: true
   },
   date: {
-    type: String,
+    type: Date,
     required: true
   },
   amount: {
