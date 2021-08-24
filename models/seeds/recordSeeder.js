@@ -1,12 +1,5 @@
-const mongoose = require('mongoose')
-const Record = require('../record')
-const db = mongoose.connection
+require('../../config/mongoose')
 
-mongoose.connect('mongodb://localhost/Expense', { useNewUrlParser: true, useUnifiedTopology: true })
-
-db.on('error', () => {
-  console.log('mongodb error!')
-})
 
 db.once('open', () => {
   console.log('mongodb connected!')
