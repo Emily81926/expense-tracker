@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <div class="col-2"></div>
     <div class="col-8">
-      <form action="/records/filter" class="form-group row">
+      <form action="/filter" class="form-group row">
         <select class="form-control col-8" id="exampleFormControlSelect1 category" placeholder="Readonly input here..." name="category">
           <option value="請選擇類別">請選擇類別</option>
           <option value="全部" {{#if (eq filteredCategory '全部' )}}selected{{/if}}>全部</option>
