@@ -7,7 +7,7 @@ const Record = require('./models/record')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const routes = require('./routes')
-const moment = require('moment')
+const PORT = process.env.PORT || 3000
 
 require('./config/mongoose')
 
@@ -20,6 +20,6 @@ app.use(routes)
 
 
 
-app.listen(port, () => {
-  console.log(`This is running on http://localhost:3000`)
+app.listen(PORT, () => {
+  console.log(`This is running on http://localhost:${PORT}`)
 })
