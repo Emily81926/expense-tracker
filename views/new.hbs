@@ -8,7 +8,7 @@
     <form action="/records" class="container needs-validation mt-4" method="POST">
       <div class="input-group mb-3 row justify-content-center ">
         <div class="input-group-prepend form-group">
-          <span class="input-group-text" id="basic-addon1">名稱＊</span>
+          <span for="name"class="input-group-text" id="basic-addon1">名稱＊</span>
         </div>
         <input  id="name" name="name" type="text" class="form-control" placeholder=" 早餐" aria-label="Username"
           aria-describedby="basic-addon1" required>
@@ -16,10 +16,10 @@
 
       <div class="input-group mb-3 row justify-content-center">
         <div class="input-group-prepend form-group">
-          <span class="input-group-text" id="basic-addon1">日期＊</span>
+          <span for="date" class="input-group-text" id="basic-addon1">日期＊</span>
         </div>
-        <input id="date" name="date" type="text" class="form-control" placeholder=" 2021/03/04" aria-label="Username"
-          aria-describedby="basic-addon1" required>
+        <input type="date" id="date" name="date" class="form-control" placeholder=" 2021/03/04" 
+          required>
       </div>
 
       <div class="input-group mb-3 row justify-content-center">

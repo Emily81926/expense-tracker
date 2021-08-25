@@ -18,8 +18,7 @@
         <div class="input-group-prepend form-group">
           <span class="input-group-text" id="basic-addon1">日期＊</span>
         </div>
-        <input id="date" name="date" type="text" class="form-control" value="{{ record.date }}" aria-label="Username"
-          aria-describedby="basic-addon1" required>
+          <input type="date" id="date" name="date" class="form-control" value="{{dateFormate record.date }}" required>
       </div>
 
       <div class="input-group mb-3 row justify-content-center">
