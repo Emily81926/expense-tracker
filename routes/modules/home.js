@@ -13,8 +13,8 @@ router.get('/', (req, res) => {
       record.forEach(item => {
         //switch 當是怎樣的case 就切換成怎樣的結果
         switch (item.category){
-          case '家居業務':
-            item['icon'] = CATEGORY.house
+          case '家居物業':
+            item['icon'] = CATEGORY.home
             break
           case '交通出行':
             item['icon'] = CATEGORY.transportation
