@@ -19,4 +19,5 @@ module.exports = {
   dateFormate: function (date) {
     return date.toJSON().substring(0, 10)
   },
+  
 }
