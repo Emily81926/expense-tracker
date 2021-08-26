@@ -1,5 +1,5 @@
-require('../../config/mongoose')
-
+const db =require('../../config/mongoose')
+const Record = require('../record')
 
 db.once('open', () => {
   console.log('mongodb connected!')
