@@ -5,8 +5,10 @@ const Record = require('../../models/record')
 const record = require('../../models/record')
 
 
+
 router.get('/', (req, res) => {
-  Record.find()
+  const userId = req.user._id
+  Record.find({ userId })
     .lean()
     //設定index.hbs的category selector
     .then(record =>{
