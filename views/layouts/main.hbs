@@ -16,10 +16,16 @@
 <body>
   <header>
     <nav class="navbar navbar-light bg-light">
-      <a class="navbar-brand p-2" href="/">私家記帳本</a>
+      <a class="navbar-brand p-2" href="/">{{#if isAuthenticated}}{{user.name}}的{{/if}}私家記帳本</a>
 
       <form class="form-inline">
+        {{#if isAuthenticated}}
         <a type="button" class="btn btn-info mr-4" href="/records/new">新增支出</a>
+        <a href="/users/logout" class="btn btn-secondary mr-3">登出</a>
+        {{else}}
+        <a href="/users/logout" class="btn btn-secondary mr-4">登入</a>
+        
+        {{/if}}
       </form>
 
     </nav>
