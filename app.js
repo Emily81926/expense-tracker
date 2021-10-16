@@ -7,6 +7,7 @@ const Record = require('./models/record')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const routes = require('./routes')
+const usePassport = require('./config/passport')
 const PORT = process.env.PORT || 3000
 
 require('./config/mongoose')
@@ -21,6 +22,8 @@ app.use(session({
 }))
 app.use(bodyParser.urlencoded({ extended: true}))
 app.use(methodOverride('_method'))
+
+usePassport(app)
 app.use(routes)
 
 
