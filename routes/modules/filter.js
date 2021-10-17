@@ -6,14 +6,14 @@ const record = require('../../models/record')
 
 //搜尋類別
 router.get('/', (req, res) => {
-
+  const userId = req.user._id
   //從選單取得的category
   const filteredCategory = req.query.category
   //篩選用category
   const category = { category: req.query.category }
   //沒有選或是選擇全部
   if (filteredCategory === '請選擇類別' || filteredCategory === '全部') {
-    return Record.find()
+    return Record.find({ userId })
       .lean()
       .then(record => {
         record.forEach(item => {
