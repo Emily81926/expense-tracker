@@ -1,38 +1,44 @@
-const db =require('../../config/mongoose')
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+const bcrypt = require('bcryptjs')
+const db = require('../../config/mongoose')
 const Record = require('../record')
+const Category = require('../category')
+const User = require('../user')
+const { recordSeed } = require('./recordSeed.json')
+const { userSeed } = require('./userSeed.json')
 
 db.once('open', () => {
   console.log('mongodb connected!')
-  Record.create({
-    id: 1,
-    name: '午餐',
-    date: '2019-04-23',
-    amount: 60,
-    category: '餐飲食品',
-  }, {
-    id: 2,
-    name: '晚餐',
-    date: '2019-04-23',
-    amount: 60,
-    category: '餐飲食品',
-  }, {
-    id: 3,
-    name: '捷運',
-    date: '2019-04-23',
-    amount: 120,
-    category: '交通出行',
-  }, {
-    id: 4,
-    name: '電影：驚奇隊長',
-    date: '2019-04-23',
-    amount: 220,
-    category: '休閒娛樂',
-  }, {
-    id: 5,
-    name: '租金',
-    date: '2019-04-01',
-    amount: 25000,
-    category: '家居物業',
-  })
-  console.log('done')
+  const { name, email, password } = userSeed
+  //註冊userSeed帳號
+  bcrypt.genSalt(10)
+    .then(salt => bcrypt.hash(password, salt))
+    .then(hash => User.create({
+      name,
+      email,
+      password: hash
+    }))
+    .then(user => {
+      //在Category資料庫找出資料，將record跟category進行配對
+      //再來把rocord跟剛建好的user帳號進行配對
+      Category.find()
+      .lean()
+      .then(categories => {
+        return Promise.all(Array.from(recordSeed, (record, i) => {
+          const category = categories.find(category => category.name === record.category)
+          record.categoryId = category._id
+          record.userId = user._id
+        }))
+      })
+      //在record資料庫加入recordSeed資料
+        .then(() => Record.create(recordSeed))
+        .then(() => {
+          console.log('categorySeed create done')
+          return db.close()
+        })
+    })
+    .catch(err => console.log(err))
+
 })

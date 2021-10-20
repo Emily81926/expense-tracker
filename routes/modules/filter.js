@@ -40,7 +40,7 @@ router.get('/', (req, res) => {
       .catch(error => console.log(error))
   }
 
-  return Record.find(category)
+  return Record.find({category})
     .lean()
     .then(record => {
       record.forEach(item => {

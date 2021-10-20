@@ -1,40 +1,31 @@
 const express = require('express')
-const CATEGORY = require('../../models/category')
 const router = express.Router()
+const Category = require('../../models/category')
 const Record = require('../../models/record')
-const record = require('../../models/record')
 
 
 
 router.get('/', (req, res) => {
   const userId = req.user._id
-  Record.find({ userId })
+  return Record.find({ userId })
     .lean()
     //設定index.hbs的category selector
-    .then(record =>{
-      record.forEach(item => {
-        //switch 當是怎樣的case 就切換成怎樣的結果
-        switch (item.category){
-          case '家居物業':
-            item['icon'] = CATEGORY.home
-            break
-          case '交通出行':
-            item['icon'] = CATEGORY.transportation
-            break
-          case '休閒娛樂':
-            item['icon'] = CATEGORY.entertainment
-            break
-          case '餐飲食品':
-            item['icon'] = CATEGORY.food
-            break
-          default:
-            item['icon'] = CATEGORY.other
-        }
+    .then(records =>{
+      Category.find()
+      .lean()
+      .then(categories => {
+        records.forEach(record => {
+          categories.forEach(category => {
+            if(String(record.categoryId) === String(category._id)){
+              record.icon = category.icon
+            }
+          })
+        })
+        res.render('index', { records, categories })
       })
-       res.render('index', { record })
+       
     })
     .catch(error => console.log(error))
-
 })
 
 module.exports = router

@@ -6,12 +6,10 @@
         <select class="form-control-lg col-8" id="exampleFormControlSelect1 category"
           placeholder="Readonly input here..." name="category">
           <option value="請選擇類別">請選擇類別</option>
-          <option value="全部" {{#if (eq filteredCategory '全部' )}}selected{{/if}}>全部</option>
-          <option value="餐飲食品" {{#if (eq filteredCategory '餐飲食品' )}}selected{{/if}}>餐飲食品</option>
-          <option value="交通出行" {{#if (eq filteredCategory '交通出行' )}}selected{{/if}}>交通出行</option>
-          <option value="休閒娛樂" {{#if (eq filteredCategory '休閒娛樂' )}}selected{{/if}}>休閒娛樂</option>
-          <option value="家居物業" {{#if (eq filteredCategory '家居物業' )}}selected{{/if}}>家居物業</option>
-          <option value="其他" {{#if (eq filteredCategory '其他' )}}selected{{/if}}>其他</option>
+          <option value="全部">全部</option>
+          {{#each categories}}
+          <option value="{{this._id}}" {{#if this.selected}}selected{{/if}}>{{this.name}}</option>
+         {{/each}}
         </select>
         <button type="submit" class="btn btn-outline-dark">搜尋</button>
       </form>
@@ -24,7 +22,7 @@
           <h3> 總金額</h3>
         </div>
         <div class="col-8 text-right align-text-bottom">
-          <h1> {{total record}}元</h1>
+          <h1> {{total records}}元</h1>
         </div>
       </div>
     </div>
@@ -35,7 +33,7 @@
   <div class="row mt-2">
     <div class="col-2"></div>
     <ul class="list-group col-6">
-      {{#each record}}
+      {{#each records}}
       <li class="list-group-item d-flex justify-content-between align-items-center">
         <i class="{{this.icon}}"></i>
         <div class="col-auto  mr-auto">

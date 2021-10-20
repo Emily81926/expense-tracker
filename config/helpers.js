@@ -20,4 +20,4 @@ module.exports = {
     return date.toJSON().substring(0, 10)
   },
   
-}
+ }
