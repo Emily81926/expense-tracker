@@ -1,72 +1,53 @@
 const express = require('express')
-const CATEGORY = require('../../models/category')
 const router = express.Router()
+const Category = require('../../models/category')
 const Record = require('../../models/record')
-const record = require('../../models/record')
+const mongoose = require('mongoose')
 
 //搜尋類別
-router.get('/', (req, res) => {
+router.post('/', (req, res) => {
   const userId = req.user._id
-  //從選單取得的category
-  const filteredCategory = req.query.category
-  //篩選用category
-  const category = { category: req.query.category }
-  //沒有選或是選擇全部
-  if (filteredCategory === '請選擇類別' || filteredCategory === '全部') {
-    return Record.find({ userId })
-      .lean()
-      .then(record => {
-        record.forEach(item => {
-          //switch 當是怎樣的case 就切換成怎樣的結果
-          switch (item.category) {
-            case '家居物業':
-              item['icon'] = CATEGORY.home
-              break
-            case '交通出行':
-              item['icon'] = CATEGORY.transportation
-              break
-            case '休閒娛樂':
-              item['icon'] = CATEGORY.entertainment
-              break
-            case '餐飲食品':
-              item['icon'] = CATEGORY.food
-              break
-            default:
-              item['icon'] = CATEGORY.other
-          }
-        })
-        res.render('index', { record, filteredCategory }) //不要忘記加filteredCategory
-      })
-      .catch(error => console.log(error))
-  }
+  //
+  const categoryId = req.body.categoryId ? mongoose.Types.ObjectId(req.body.categoryId) : { $ne: '' }
 
-  return Record.find({category})
-    .lean()
-    .then(record => {
-      record.forEach(item => {
-        //switch 當是怎樣的case 就切換成怎樣的結果
-        switch (item.category) {
-          case '家居物業':
-            item['icon'] = CATEGORY.home
-            break
-          case '交通出行':
-            item['icon'] = CATEGORY.transportation
-            break
-          case '休閒娛樂':
-            item['icon'] = CATEGORY.entertainment
-            break
-          case '餐飲食品':
-            item['icon'] = CATEGORY.food
-            break
-          default:
-            item['icon'] = CATEGORY.other
-        }
-      })
-      res.render('index', { record, filteredCategory }) //不要忘記加filteredCategory
+  return Record.aggregate([
+    {
+      $project: {
+        name: 1, date: 1, amount: 1, category: 1, categoryId: 1, userId: 1,
+      }
+    }, //找出與categoryId及userId相符合的資料
+    { $match: { categoryId, userId } }
+  ])
+    .then(records => {
+      //將catetory找出的資料跟record得出的資料進行配對
+      //如果record.categoryId跟category._id相符合，顯示相對應的icon
+      Category.find()
+        .lean()
+        .then(categories => {
+          categories.forEach(category => {
+            records.filter(record => {
+              if (String(record.categoryId) === String(category._id)) {
+                record.icon = category.icon
+              }
+            })
+            if (String(categoryId) === String(category._id)) category.selected = true
+          })
+          //以$category作為分組
+          Record.aggregate([
+            {
+              $project: {
+                name: 1, date: 1, amount: 1, category: 1, categoryId: 1, userId: 1,
+              }
+            },
+            { $match: { categoryId, userId } },
+            { $group: { _id: '$category' } }
+          ])
+            .then( res.render('index', { records, categories }))
+        })
     })
     .catch(error => console.log(error))
-
 })
+
 
 
 module.exports = router
