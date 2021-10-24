@@ -13,14 +13,14 @@ router.get('/', (req, res) => {
         .then(categories => {
           records.forEach(record => {
             categories.forEach(category => {
+              //都用成字串來比較相等
               if (String(record.categoryId) === String(category._id)) {
                 record.icon = category.icon
               }
             })
           })
           Record.aggregate([{ $group: { _id: '$category' } }])
-            .then(categoryAmount =>
-              res.render('index', { records, categories })
+            .then(res.render('index', { records, categories })
             )
         })
     })
