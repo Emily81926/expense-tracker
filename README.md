@@ -1,13 +1,20 @@
 # 私家記帳本
 使用Express製作的記帳網路應用程式
 
+### :link: heroku 連結
+https://still-ridge-71038.herokuapp.com
+
 ## 功能
-1. 使用者可以瀏覽所有消費
-2. 使用者可以新增消費紀錄
-3. 使用者可以修改消費紀錄
-4. 使用者可以刪除消費紀錄
-5. 使用者可以透過分類欄位瀏覽特定類別的消費紀錄
-6. 自動加總當頁面消費的金額
+1. 使用者可以註冊、登入及登出
+2. 使用者可以使用facebook第三方登入
+3. 使用者可以新增、修改、刪除及瀏覽消費紀錄
+4. 使用者可以透過分類欄位瀏覽特定類別的消費紀錄
+5. 自動加總當頁面消費的金額 
+
+## 網頁圖示
+![image](/public/img/Expense-tracker-host.png)
+![image](/public/img/Expense-tracker-pieChart.png)
+![image](/public/img/Expense-tracker-login.png)
 
 ## 安裝與執行步驟
 1. 使用終端機，clone此專案到local位置
