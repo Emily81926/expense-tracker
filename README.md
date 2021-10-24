@@ -12,7 +12,8 @@ https://still-ridge-71038.herokuapp.com
 5. 自動加總當頁面消費的金額 
 
 ## 網頁圖示
-![image](/public/img/Expense-tracker-host.png)
+*登入頁
+![image](expense-tracker登入頁.png)
 ![image](/public/img/Expense-tracker-pieChart.png)
 ![image](/public/img/Expense-tracker-login.png)
 
