@@ -7,7 +7,7 @@ module.exports = {
       return false
     }
   }, // 設定加總的helper
-  total: function (array) {
+  totalAmount: function (array) {
     let sum = 0 // sum start at 0
 
     array.forEach(function (doc) {
