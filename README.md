@@ -14,8 +14,16 @@ https://still-ridge-71038.herokuapp.com
 ## 網頁圖示
 *登入頁
 ![image](expense-tracker登入頁.png)
-![image](/public/img/Expense-tracker-pieChart.png)
-![image](/public/img/Expense-tracker-login.png)
+*註冊頁
+![image](expense-tracker註冊頁.png)
+*首頁
+![image](expense-tracker首頁.png)
+*新增頁
+![image](expense-tracker新增頁.png)
+*修改頁
+![image](expense-tracker修改頁.png)
+*搜尋分頁
+![image](expense-tracker項目分頁.png)
 
 ## 安裝與執行步驟
 1. 使用終端機，clone此專案到local位置
@@ -45,6 +53,13 @@ https://still-ridge-71038.herokuapp.com
         mongodb connected!
         
    在任一瀏覽器輸入localhost:3000即可進入網站
+   
+## 測試資料
+- 人員資料
+
+| name            | email    | password |
+| --------------- | -------- |----------|
+| user1          | user1@example.com     | 12345678  |
   
 ## 環境與套件
 * 環境：[Node.js](https://nodejs.org/en/)
