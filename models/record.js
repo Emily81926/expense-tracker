@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const recordSchema = new Schema({
   id: {
-    type: Number,
+    type: Number
   },
   name: {
     type: String,
@@ -16,24 +16,21 @@ const recordSchema = new Schema({
     type: Number,
     required: true
   },
-  category:{
+  category: {
     type: String,
     required: true
   },
   categoryId: {
     type: Schema.Types.ObjectId,
     ref: 'Category',
-    required: true,
+    required: true
   },
-  userId:{
-    type:Schema.Types.ObjectId,
-    ref:'User',
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
     index: true,
-    required: true,
+    required: true
   }
 })
 
-
-
-
-module.exports = mongoose.model('Record', recordSchema )
+module.exports = mongoose.model('Record', recordSchema)

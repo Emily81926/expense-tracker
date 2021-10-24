@@ -12,7 +12,7 @@ const { userSeed } = require('./userSeed.json')
 db.once('open', () => {
   console.log('mongodb connected!')
   const { name, email, password } = userSeed
-  //註冊userSeed帳號
+  // 註冊userSeed帳號
   bcrypt.genSalt(10)
     .then(salt => bcrypt.hash(password, salt))
     .then(hash => User.create({
@@ -21,18 +21,18 @@ db.once('open', () => {
       password: hash
     }))
     .then(user => {
-      //在Category資料庫找出資料，將record跟category進行配對
-      //再來把rocord跟剛建好的user帳號進行配對
+      // 在Category資料庫找出資料，將record跟category進行配對
+      // 再來把rocord跟剛建好的user帳號進行配對
       Category.find()
-      .lean()
-      .then(categories => {
-        return Promise.all(Array.from(recordSeed, (record, i) => {
-          const category = categories.find(category => category.name === record.category)
-          record.categoryId = category._id
-          record.userId = user._id
-        }))
-      })
-      //在record資料庫加入recordSeed資料
+        .lean()
+        .then(categories => {
+          return Promise.all(Array.from(recordSeed, (record, i) => {
+            const category = categories.find(category => category.name === record.category)
+            record.categoryId = category._id
+            record.userId = user._id
+          }))
+        })
+      // 在record資料庫加入recordSeed資料
         .then(() => Record.create(recordSeed))
         .then(() => {
           console.log('categorySeed create done')
@@ -40,5 +40,4 @@ db.once('open', () => {
         })
     })
     .catch(err => console.log(err))
-
 })
